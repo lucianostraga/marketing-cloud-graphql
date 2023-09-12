@@ -1,0 +1,7 @@
+mutation contactsUpdate {
+  uiapi {
+    request0: ContactUpdate(input: {Contact: {Last_MC_Sync__c: "XXXXXXXXXXXX"}, Id: "RECORDID"}) {
+      success
+    }
+  }
+}

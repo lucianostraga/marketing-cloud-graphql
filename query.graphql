@@ -1,0 +1,60 @@
+query contactsQuery {
+  uiapi {
+     query {
+      Contact(
+              where: {
+                and : [
+                  {
+                   or: [
+                     {Title: { like : "C%" }},
+                     {Title: { like : "VP%" }}
+                     {Title: { like : "Director%" }}
+                   ]
+                  },
+                  {
+                    Id: { inq: {
+                      Case: {},
+                      ApiName:"ContactId" },
+                    }
+                    AccountId: { inq: {
+                      Opportunity: { Amount: { gt : 100000 }  },
+                      ApiName:"AccountId" },
+                    }
+                  }
+                ]
+              } 
+              first:2000 
+              upperBound: 500000) {
+        edges {
+          node {
+            Id
+            FirstName {
+              value
+            }
+            LastName {
+              value
+            }
+            Account {
+              Name {
+                value
+              }
+            }
+            Email {
+              value
+            }
+            Title {
+              value
+            }
+          }
+        }
+        totalCount
+        pageInfo {
+          endCursor
+          hasNextPage
+          hasPreviousPage
+        }
+      }
+      
+    }
+  }
+}
